@@ -11,4 +11,13 @@
     <ProjectReference Include="..\AutomobiliuNuoma.Core\AutomobiliuNuoma.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Auto.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Klientai.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

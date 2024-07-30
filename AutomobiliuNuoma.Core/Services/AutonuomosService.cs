@@ -14,6 +14,8 @@ namespace AutomobiliuNuoma.Core.Services
         private readonly IAutomobiliaiService _automobiliaiService;
 
         private List<Automobilis> VisiAutomobiliai = new List<Automobilis>();
+        
+        private List<NuomosUzsakymas> VisiUzsakymai = new List<NuomosUzsakymas>();
 
         public AutonuomosService(IKlientaiService klientaiService, IAutomobiliaiService automobiliaiService)
         {
@@ -23,7 +25,9 @@ namespace AutomobiliuNuoma.Core.Services
 
         public List<Automobilis> GautiVisusAutomobilius()
         {
-            return _automobiliaiService.GautiVisusAutomobilius();
+            if(VisiAutomobiliai.Count == 0)
+                VisiAutomobiliai = _automobiliaiService.GautiVisusAutomobilius();
+            return VisiAutomobiliai;
         }
 
         public void PridetiNaujaAutomobili(Automobilis automobilis)
@@ -31,5 +35,30 @@ namespace AutomobiliuNuoma.Core.Services
             _automobiliaiService.PridetiAutomobili(automobilis);
         }
 
+        public List<Klientas> GautiVisusKlientus()
+        {
+            return _klientaiService.GautiVisusKlientus();
+        }
+        public void SukurtiNuoma(string klientoVardas, string klientoPavarde, int autoId, DateTime nuomosPradzia, int dienos)
+        {
+            Klientas klientas = _klientaiService.PaieskaPagalVardaPavarde(klientoVardas, klientoPavarde);
+
+            Automobilis automobilis = new Automobilis();
+            
+            foreach(Automobilis a in VisiAutomobiliai)
+            {
+                if (a.Id == autoId)
+                    automobilis = a;
+            }
+
+            NuomosUzsakymas nuomosUzsakymas = new NuomosUzsakymas
+            {
+                Uzsakovas = klientas,
+                NuomuojamasAuto = automobilis,
+                NuomosPradzia = nuomosPradzia,
+                DienuKiekis = dienos
+            };
+            VisiUzsakymai.Add(nuomosUzsakymas);
+        }
     }
 }

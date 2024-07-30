@@ -12,6 +12,14 @@ namespace AutomobiliuNuoma.Core.Models
         public string Marke { get; set; }
         public string Modelis { get; set; }
         public decimal NuomosKaina { get; set; }
-
+        public Automobilis(int id, string marke, string modelis, decimal nuomosKaina)
+        {
+            Id = id;
+            Marke = marke;
+            Modelis = modelis;
+            NuomosKaina = nuomosKaina;
+        }
+        public Automobilis() { }
+        
     }
 }

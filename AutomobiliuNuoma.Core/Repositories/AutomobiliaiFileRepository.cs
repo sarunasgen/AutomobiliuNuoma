@@ -22,7 +22,22 @@ namespace AutomobiliuNuoma.Core.Repositories
 
         public List<Automobilis> NuskaitytiAutomobilius()
         {
-            throw new NotImplementedException();
+            List<Automobilis> visiAuto = new List<Automobilis>();
+            using(StreamReader sr = new StreamReader(_filePath))
+            {
+                while(!sr.EndOfStream)
+                {
+                    string eilute = sr.ReadLine();
+                    string[] vertes = eilute.Split(',', StringSplitOptions.RemoveEmptyEntries);
+                    if (vertes.Length == 6)
+                        visiAuto.Add(new Elektromobilis(int.Parse(vertes[0]), vertes[1], vertes[2], decimal.Parse(vertes[3]),
+                            int.Parse(vertes[4]), int.Parse(vertes[5])));
+                    else
+                        visiAuto.Add(new NaftosKuroAutomobilis(int.Parse(vertes[0]), vertes[1], vertes[2], decimal.Parse(vertes[3]),
+                            double.Parse(vertes[4])));
+                }
+            }
+            return visiAuto;
         }
     }
 }
