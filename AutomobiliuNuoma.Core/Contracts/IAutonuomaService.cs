@@ -13,5 +13,7 @@ namespace AutomobiliuNuoma.Core.Contracts
         List<Automobilis> GautiVisusAutomobilius();
         List<Klientas> GautiVisusKlientus();
         void SukurtiNuoma(string klientoVardas, string klientoPavarde, int autoId, DateTime nuomosPradzia, int dienos);
+        List<Elektromobilis> GautiVisusElektromobilius();
+        List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto();
     }
 }

@@ -11,5 +11,9 @@ namespace AutomobiliuNuoma.Core.Contracts
     {
         List<Automobilis> NuskaitytiAutomobilius();
         void IrasytiAutomobilius();
+        void IrasytiElektromobili(Elektromobilis elektromobilis);
+        void IrasytiNaftosKuroAutomobilis(NaftosKuroAutomobilis automobilis);
+        List<Elektromobilis> GautiVisusElektromobilius();
+        List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAutomobilius();
     }
 }

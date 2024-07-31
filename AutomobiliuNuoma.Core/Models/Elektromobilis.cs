@@ -16,6 +16,12 @@ namespace AutomobiliuNuoma.Core.Models
             BaterijosTalpa = baterijosTalpa;
             IkrovimoLaikas = ikrovimoLaikas;
         }
+        public Elektromobilis(string marke, string modelis, decimal nuomosKaina, int baterijosTalpa, int ikrovimoLaikas)
+            : base(marke, modelis, nuomosKaina)
+        {
+            BaterijosTalpa = baterijosTalpa;
+            IkrovimoLaikas = ikrovimoLaikas;
+        }
         public override string ToString()
         {
             return $"{Id} {Marke} {Modelis} {NuomosKaina} {BaterijosTalpa}kwh {IkrovimoLaikas} val.";

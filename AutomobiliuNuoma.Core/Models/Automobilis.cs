@@ -19,6 +19,12 @@ namespace AutomobiliuNuoma.Core.Models
             Modelis = modelis;
             NuomosKaina = nuomosKaina;
         }
+        public Automobilis(string marke, string modelis, decimal nuomosKaina)
+        {
+            Marke = marke;
+            Modelis = modelis;
+            NuomosKaina = nuomosKaina;
+        }
         public Automobilis() { }
         
     }

@@ -20,6 +20,14 @@ namespace AutomobiliuNuoma.Core.Services
         {
             return _automobiliaiRepository.NuskaitytiAutomobilius();
         }
+        public List<Elektromobilis> GautiVisusElektromobilius()
+        {
+            return _automobiliaiRepository.GautiVisusElektromobilius();
+        }
+        public List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto()
+        {
+            return _automobiliaiRepository.GautiVisusNaftosKuroAutomobilius();
+        }
 
         public void IrasytiIFaila()
         {
@@ -45,7 +53,10 @@ namespace AutomobiliuNuoma.Core.Services
 
         public void PridetiAutomobili(Automobilis automobilis)
         {
-            
+            if (automobilis is Elektromobilis)
+                _automobiliaiRepository.IrasytiElektromobili((Elektromobilis)automobilis);
+            else
+                _automobiliaiRepository.IrasytiNaftosKuroAutomobilis((NaftosKuroAutomobilis)automobilis);
         }
     }
 }

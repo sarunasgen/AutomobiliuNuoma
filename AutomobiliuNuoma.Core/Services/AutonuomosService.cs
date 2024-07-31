@@ -39,6 +39,14 @@ namespace AutomobiliuNuoma.Core.Services
         {
             return _klientaiService.GautiVisusKlientus();
         }
+        public List<Elektromobilis> GautiVisusElektromobilius()
+        {
+            return _automobiliaiService.GautiVisusElektromobilius();
+        }
+        public List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto()
+        {
+            return _automobiliaiService.GautiVisusNaftosKuroAuto();
+        }
         public void SukurtiNuoma(string klientoVardas, string klientoPavarde, int autoId, DateTime nuomosPradzia, int dienos)
         {
             Klientas klientas = _klientaiService.PaieskaPagalVardaPavarde(klientoVardas, klientoPavarde);

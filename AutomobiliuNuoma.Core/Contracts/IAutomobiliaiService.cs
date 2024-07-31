@@ -14,6 +14,8 @@ namespace AutomobiliuNuoma.Core.Contracts
         void PridetiAutomobili(Automobilis automobilis);
         List<Automobilis> PaieskaPagalMarke(string marke);
         List<Automobilis> GautiVisusAutomobilius();
+        List<Elektromobilis> GautiVisusElektromobilius();
+        List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto();
 
     }
 }

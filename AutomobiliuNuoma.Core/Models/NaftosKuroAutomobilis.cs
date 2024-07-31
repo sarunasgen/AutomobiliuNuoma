@@ -14,6 +14,10 @@ namespace AutomobiliuNuoma.Core.Models
         {
             DegaluSanaudos = degaluSanaudos;
         }
+        public NaftosKuroAutomobilis()
+        {
+
+        }
         public override string ToString()
         {
             return $"{Id} {Marke} {Modelis} {NuomosKaina} {DegaluSanaudos.ToString("F1")}L/100km";
