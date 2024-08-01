@@ -1,4 +1,5 @@
 ﻿using AutomobiliuNuoma.Core.Contracts;
+using AutomobiliuNuoma.Core.Enums;
 using AutomobiliuNuoma.Core.Models;
 using AutomobiliuNuoma.Core.Repositories;
 using AutomobiliuNuoma.Core.Services;
@@ -19,6 +20,8 @@ public class Program
             Console.WriteLine("4. Rodyti visus elektromobilius");
             Console.WriteLine("5. Formuoti nuomos uzsakyma");
             Console.WriteLine("6. Prideti automobili");
+            Console.WriteLine("7. Prideti darbuotoja");
+            Console.WriteLine("8. Rodyti visus darbuotojus");
 
             string pasirinkimas = Console.ReadLine();
             switch(pasirinkimas)
@@ -113,6 +116,33 @@ public class Program
                     autonuomaService.PridetiNaujaAutomobili(naujasAuto);
 
                     break;
+                case "7":
+
+                    Console.WriteLine("Iveskite varda");
+                    string darbuotojoVardas = Console.ReadLine();
+                    Console.WriteLine("Iveskite pavarde");
+                    string darbuotojoPavarde = Console.ReadLine();
+                    Console.WriteLine("Pasirinkite pareigas: 2 - vadybininkas, 1 - direktorius, 3 - mechanikas");
+
+                    DarbuotojasPareigos darbuotojasPareigos = (DarbuotojasPareigos)int.Parse(Console.ReadLine());
+
+                    Darbuotojas naujasDarbuotojas = new Darbuotojas
+                    {
+                        Vardas = darbuotojoVardas,
+                        Pavarde = darbuotojoPavarde,
+                        Pareigos = darbuotojasPareigos
+                    };
+
+                    autonuomaService.PridetiDarbuotoja(naujasDarbuotojas);
+
+                    break;
+                case "8":
+                    List<Darbuotojas> darbuotojai = autonuomaService.GautiVisusDarbuotojus();
+                    foreach (Darbuotojas d in darbuotojai)
+                    {
+                        Console.WriteLine(d);
+                    }
+                    break;
             }
 
 
@@ -125,6 +155,8 @@ public class Program
         IAutomobiliaiRepository automobiliaiRepository = new AutomobiliaiDbRepository("Server=localhost\\MSSQLSERVER01;Database=autonuoma;Trusted_Connection=True;");
         IKlientaiService klientaiService = new KlientaiService(klientaiRepository);
         IAutomobiliaiService automobiliaiService = new AutomobiliaiService(automobiliaiRepository);
-        return new AutonuomosService(klientaiService, automobiliaiService);
+        IDarbuotojaiRepository darbuotojaiRepository = new DarbuotojaiDbRepository("Server=localhost\\MSSQLSERVER01;Database=autonuoma;Trusted_Connection=True;");
+        IDarbuotojaiService darbuotojaiService = new DarbuotojaiService(darbuotojaiRepository);
+        return new AutonuomosService(klientaiService, automobiliaiService, darbuotojaiService);
     }
 }

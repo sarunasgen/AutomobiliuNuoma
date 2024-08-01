@@ -12,15 +12,17 @@ namespace AutomobiliuNuoma.Core.Services
     {
         private readonly IKlientaiService _klientaiService;
         private readonly IAutomobiliaiService _automobiliaiService;
+        private readonly IDarbuotojaiService _darbuotojaiService;
 
         private List<Automobilis> VisiAutomobiliai = new List<Automobilis>();
         
         private List<NuomosUzsakymas> VisiUzsakymai = new List<NuomosUzsakymas>();
 
-        public AutonuomosService(IKlientaiService klientaiService, IAutomobiliaiService automobiliaiService)
+        public AutonuomosService(IKlientaiService klientaiService, IAutomobiliaiService automobiliaiService, IDarbuotojaiService darbuotojaiService)
         {
             _automobiliaiService = automobiliaiService;
             _klientaiService = klientaiService;
+            _darbuotojaiService = darbuotojaiService;
         }
 
         public List<Automobilis> GautiVisusAutomobilius()
@@ -67,6 +69,18 @@ namespace AutomobiliuNuoma.Core.Services
                 DienuKiekis = dienos
             };
             VisiUzsakymai.Add(nuomosUzsakymas);
+        }
+        public void PridetiDarbuotoja(Darbuotojas darbuotojas)
+        {
+            _darbuotojaiService.PridetiDarbuotoja(darbuotojas);
+        }
+        public List<Darbuotojas> GautiVisusDarbuotojus()
+        {
+            return _darbuotojaiService.GautiDarbuotojus();
+        }
+        public Darbuotojas GautiDarbuotojaPagalId(int id)
+        {
+            return _darbuotojaiService.GautiDarbuotojaPagalId(id);
         }
     }
 }
