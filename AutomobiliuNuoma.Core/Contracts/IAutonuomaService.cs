@@ -18,5 +18,6 @@ namespace AutomobiliuNuoma.Core.Contracts
         void PridetiDarbuotoja(Darbuotojas darbuotojas);
         Darbuotojas GautiDarbuotojaPagalId(int id);
         List<Darbuotojas> GautiVisusDarbuotojus();
+        void AtnaujintiAutomobili(Automobilis automobilis);
     }
 }

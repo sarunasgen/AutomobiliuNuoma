@@ -57,6 +57,22 @@ namespace AutomobiliuNuoma.Core.Repositories
             }
         }
 
+        public void AtnaujintiElektromobili(Elektromobilis elektromobilis)
+        {
+            string sqlCommand = @"UPDATE [dbo].[Elektromobiliai]
+             SET [Marke] = @Marke
+             ,[Modelis] = @Modelis
+             ,[NuomosKaina] = @NuomosKaina
+             ,[BaterijosTalpa] = @BaterijosTalpa
+             ,[IkrovimoLaikas] = @IkrovimoLaikas
+             WHERE Id = @Id";
+            
+            using (var connection = new SqlConnection(_dbConnectionString))
+            {
+                connection.Execute(sqlCommand, elektromobilis);
+            }
+        }
+
         public void IrasytiNaftosKuroAutomobilis(NaftosKuroAutomobilis automobilis)
         {
             throw new NotImplementedException();

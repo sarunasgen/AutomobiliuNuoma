@@ -16,6 +16,11 @@ namespace AutomobiliuNuoma.Core.Repositories
             _filePath = autoFilePath;
         }
 
+        public void AtnaujintiElektromobili(Elektromobilis elektromobilis)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Elektromobilis> GautiVisusElektromobilius()
         {
             List<Elektromobilis> visiAuto = new List<Elektromobilis>();

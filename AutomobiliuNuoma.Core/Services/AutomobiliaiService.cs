@@ -16,6 +16,12 @@ namespace AutomobiliuNuoma.Core.Services
         {
             _automobiliaiRepository = automobiliaiRepository;
         }
+
+        public void AtnaujintiElektromobili(Elektromobilis elektromobilis)
+        {
+            _automobiliaiRepository.AtnaujintiElektromobili(elektromobilis);
+        }
+
         public List<Automobilis> GautiVisusAutomobilius()
         {
             return _automobiliaiRepository.NuskaitytiAutomobilius();

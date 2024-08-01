@@ -22,6 +22,7 @@ public class Program
             Console.WriteLine("6. Prideti automobili");
             Console.WriteLine("7. Prideti darbuotoja");
             Console.WriteLine("8. Rodyti visus darbuotojus");
+            Console.WriteLine("9. Atnaujinti automobili");
 
             string pasirinkimas = Console.ReadLine();
             switch(pasirinkimas)
@@ -142,6 +143,49 @@ public class Program
                     {
                         Console.WriteLine(d);
                     }
+                    break;
+                case "9":
+                    Console.WriteLine("Pasirinkite automobilio id");
+                    int pasirinktasId = int.Parse(Console.ReadLine());
+                    Automobilis automobilis = autonuomaService.GautiVisusElektromobilius().Find(x => x.Id == pasirinktasId); 
+                    int naujasIkrovimoLaikas = 0;
+                    int naujaBaterijosTalpa = 0;
+                    Console.WriteLine("Elektromobilis - 1  Naftos Kuro Auto - 2: ");
+                    string autoTipas = Console.ReadLine();
+                    switch (autoTipas)
+                    {
+                        case "1":
+                            Console.WriteLine("Iveskite Ikrovimo laika");
+                            naujasIkrovimoLaikas = int.Parse(Console.ReadLine());
+                            Console.WriteLine("Iveskite Baterijos talpa");
+                            naujaBaterijosTalpa = int.Parse(Console.ReadLine());
+                            break;
+                        case "2":
+                            //NaftosKuro
+                            break;
+                    }
+                    Console.WriteLine("Iveskite marke");
+                    string naujaMarke = Console.ReadLine();
+                    Console.WriteLine("Iveskite modeli");
+                    string naujasModelis = Console.ReadLine();
+                    Console.WriteLine("Iveskite nuomos kaina");
+                    decimal naujaNuomosKaina = decimal.Parse(Console.ReadLine());
+                    switch (autoTipas)
+                    {
+                        case "1":
+                            automobilis.Marke = naujaMarke;
+                            automobilis.Modelis = naujasModelis;
+                            automobilis.NuomosKaina = naujaNuomosKaina;
+                            ((Elektromobilis)automobilis).BaterijosTalpa = naujaBaterijosTalpa;
+                            ((Elektromobilis)automobilis).IkrovimoLaikas = naujasIkrovimoLaikas;
+
+                            break;
+                        case "2":
+                            //NaftosKuro
+                            break;
+                    }
+                    autonuomaService.AtnaujintiAutomobili(automobilis);
+
                     break;
             }
 

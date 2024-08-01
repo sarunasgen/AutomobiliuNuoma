@@ -82,5 +82,16 @@ namespace AutomobiliuNuoma.Core.Services
         {
             return _darbuotojaiService.GautiDarbuotojaPagalId(id);
         }
+
+        public void AtnaujintiAutomobili(Automobilis automobilis)
+        {
+            if (automobilis is Elektromobilis)
+                _automobiliaiService.AtnaujintiElektromobili((Elektromobilis)automobilis);
+            else
+            {
+                //NaftosKuro automobilio atnaujinimas
+            }
+
+        }
     }
 }

@@ -16,6 +16,6 @@ namespace AutomobiliuNuoma.Core.Contracts
         List<Automobilis> GautiVisusAutomobilius();
         List<Elektromobilis> GautiVisusElektromobilius();
         List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto();
-
+        void AtnaujintiElektromobili(Elektromobilis elektromobilis);
     }
 }
