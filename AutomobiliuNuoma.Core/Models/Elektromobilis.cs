@@ -10,6 +10,10 @@ namespace AutomobiliuNuoma.Core.Models
     {
         public int BaterijosTalpa { get; set; }
         public int IkrovimoLaikas { get; set; }
+        public Elektromobilis()
+        {
+
+        }
         public Elektromobilis(int id, string marke, string modelis, decimal nuomosKaina, int baterijosTalpa, int ikrovimoLaikas) 
             : base(id,marke,modelis,nuomosKaina)
         {
