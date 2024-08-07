@@ -1,0 +1,34 @@
+﻿@page
+@using AutomobiliuNuoma.Core.Models
+@model AutomobiliuNuoma.FrontEnd.Pages.ElektromobiliaiModel
+@{
+    ViewData["Title"] = "Electric Cars";
+    Layout = "Shared/_Layout";
+}
+
+
+<table class="my-table">
+    <tr class="my-table-row-headings">
+        <th>ID</th>
+        <th>Marke</th>
+        <th>Modelis</th>
+        <th>Nuomos Kaina</th>
+        <th>Baterijos Talpa</th>
+        <th>Baterijos Ikrovimo Laikas</th>
+    </tr>
+    @foreach (Elektromobilis ev in Model.Elektromobiliai)
+    {
+        <tr class="my-table-row">
+            <td>@ev.Id</td>
+            <td>@ev.Marke</td>
+            <td>@ev.Modelis</td>
+            <td>@ev.NuomosKaina</td>
+            <td>@ev.BaterijosTalpa</td>
+            <td>@ev.IkrovimoLaikas</td>
+        </tr>
+    }
+
+
+</table>
+
+

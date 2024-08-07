@@ -1,0 +1,27 @@
+﻿@page
+@using AutomobiliuNuoma.Core.Models
+@model AutomobiliuNuoma.FrontEnd.Pages.NaftosKuroAutoModel
+@{
+}
+
+<table class="my-table">
+    <tr class="my-table-row-headings">
+        <th>ID</th>
+        <th>Marke</th>
+        <th>Modelis</th>
+        <th>Nuomos Kaina</th>
+        <th>Kuro Sanaudos</th>
+    </tr>
+    @foreach (NaftosKuroAutomobilis ev in Model.NaftosKuroAutomobiliai)
+    {
+        <tr class="my-table-row">
+            <td>@ev.Id</td>
+            <td>@ev.Marke</td>
+            <td>@ev.Modelis</td>
+            <td>@ev.NuomosKaina.ToString("F2")$</td>
+            <td>@ev.DegaluSanaudos L/100km</td>
+        </tr>
+    }
+
+
+</table>

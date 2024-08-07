@@ -1,0 +1,23 @@
+﻿@page
+@using AutomobiliuNuoma.Core.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "Shared/_Layout";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>To my car rent application front end.</p>
+    <p>Use navigation to get around it!</p>
+    <h3>Good Luck</h3>
+</div>
+
+<div>
+    @foreach(Elektromobilis ev in Model.Elektromobiliai)
+    {
+        <p>@ev</p>
+    }
+
+</div>
+
