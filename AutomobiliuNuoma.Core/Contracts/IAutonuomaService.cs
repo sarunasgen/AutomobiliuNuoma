@@ -10,10 +10,10 @@ namespace AutomobiliuNuoma.Core.Contracts
     public interface IAutonuomaService
     {
         void PridetiNaujaAutomobili(Automobilis automobilis);
-        List<Automobilis> GautiVisusAutomobilius();
+        Task<List<Automobilis>> GautiVisusAutomobilius();
         List<Klientas> GautiVisusKlientus();
         void SukurtiNuoma(string klientoVardas, string klientoPavarde, int autoId, DateTime nuomosPradzia, int dienos);
-        List<Elektromobilis> GautiVisusElektromobilius();
+        Task<List<Elektromobilis>> GautiVisusElektromobilius();
         List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto();
         void PridetiDarbuotoja(Darbuotojas darbuotojas);
         Darbuotojas GautiDarbuotojaPagalId(int id);

@@ -11,14 +11,21 @@ namespace AutomobiliuNuoma.Core.Services
     public class DarbuotojaiService : IDarbuotojaiService
     {
         private readonly IDarbuotojaiRepository _darbuotojaiRepository;
-        public DarbuotojaiService(IDarbuotojaiRepository darbuotojaiRepository)
+        private readonly IMongoDbCacheRepository _mongoCache;
+        public DarbuotojaiService(IDarbuotojaiRepository darbuotojaiRepository, IMongoDbCacheRepository mongoDbCache)
         {
             _darbuotojaiRepository = darbuotojaiRepository;
+            _mongoCache = mongoDbCache;
         }
 
         public Darbuotojas GautiDarbuotojaPagalId(int darbuotojoId)
         {
-            return _darbuotojaiRepository.GautiDarbuotojaPagalId(darbuotojoId);
+            Darbuotojas result;
+            if ((result = _mongoCache.GautiDarbuotojaPagalId(darbuotojoId).Result) != null)
+                return result;
+            result = _darbuotojaiRepository.GautiDarbuotojaPagalId(darbuotojoId);
+            _mongoCache.PridetiDarbuotoja(result);
+            return result;
         }
 
         public List<Darbuotojas> GautiDarbuotojus()

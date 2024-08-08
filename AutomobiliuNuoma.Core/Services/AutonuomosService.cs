@@ -25,10 +25,10 @@ namespace AutomobiliuNuoma.Core.Services
             _darbuotojaiService = darbuotojaiService;
         }
 
-        public List<Automobilis> GautiVisusAutomobilius()
+        public async Task<List<Automobilis>> GautiVisusAutomobilius()
         {
             if(VisiAutomobiliai.Count == 0)
-                VisiAutomobiliai = _automobiliaiService.GautiVisusAutomobilius();
+                VisiAutomobiliai = await _automobiliaiService.GautiVisusAutomobilius();
             return VisiAutomobiliai;
         }
 
@@ -41,9 +41,9 @@ namespace AutomobiliuNuoma.Core.Services
         {
             return _klientaiService.GautiVisusKlientus();
         }
-        public List<Elektromobilis> GautiVisusElektromobilius()
+        public async Task<List<Elektromobilis>> GautiVisusElektromobilius()
         {
-            return _automobiliaiService.GautiVisusElektromobilius();
+            return await _automobiliaiService.GautiVisusElektromobilius();
         }
         public List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto()
         {
@@ -93,5 +93,6 @@ namespace AutomobiliuNuoma.Core.Services
             }
 
         }
+
     }
 }

@@ -33,9 +33,9 @@ namespace AutomobiliuNuoma.Core.Services
             return null;
             //..
         }
-        public List<Elektromobilis> GautiVisusElektromobilius()
+        public async Task<List<Elektromobilis>> GautiVisusElektromobilius()
         {
-            return _automobiliaiRepository.GautiVisusElektromobilius().Result;
+            return await _automobiliaiRepository.GautiVisusElektromobilius();
         }
         public List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto()
         {
