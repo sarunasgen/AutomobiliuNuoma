@@ -12,11 +12,34 @@ public class Program
     }
     public async Task DoActions()
     {
-        AsyncActions asyncActions = new AsyncActions();
+         AsyncActions asyncActions = new AsyncActions();
+        var s = await asyncActions.GiveStringAfter5Seconds();
+        Console.WriteLine(s);
         var numbersTask = asyncActions.PrintRandomNumbers();
         var negativeNumbersTask = asyncActions.PrintRandomNegativeNumbers();
-        Task.WhenAll(numbersTask, negativeNumbersTask).ContinueWith(x => asyncActions.PrintRandomChar());
-        bool hasWaited = asyncActions.WaitSeconds(10).Result;
+
+
+        await Task.WhenAll(numbersTask, negativeNumbersTask)
+            .ContinueWith(async x =>
+            {
+                Console.WriteLine("Negative numbers were printed");
+                Console.WriteLine("Not numbers were printed aswell");
+                await asyncActions.WaitSeconds(5);
+                Console.WriteLine("And I waited 5 seconds");
+            });
+
+        numbersTask = asyncActions.PrintRandomNumbers();
+        negativeNumbersTask = asyncActions.PrintRandomNegativeNumbers();
+        await Task.WhenAll(numbersTask, negativeNumbersTask)
+            .ContinueWith(async x =>
+            {
+                Console.WriteLine("Negative numbers were printed from 2nd block");
+                Console.WriteLine("Not numbers were printed aswell from 2nd block");
+                await asyncActions.WaitSeconds(7);
+                Console.WriteLine("And I waited 7 seconds");
+            });
+
+
     }
 }
 public class AsyncActions
@@ -66,5 +89,10 @@ public class AsyncActions
     {
         await Task.Delay(seconds * 1000);
         return true;
+    }
+    public async Task<string> GiveStringAfter5Seconds()
+    {
+        await Task.Delay(5 * 1000);
+        return "Your expected string";
     }
 }
