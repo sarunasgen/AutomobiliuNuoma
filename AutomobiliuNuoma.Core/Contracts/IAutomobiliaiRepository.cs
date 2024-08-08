@@ -13,8 +13,8 @@ namespace AutomobiliuNuoma.Core.Contracts
         void IrasytiAutomobilius();
         void IrasytiElektromobili(Elektromobilis elektromobilis);
         void IrasytiNaftosKuroAutomobilis(NaftosKuroAutomobilis automobilis);
-        List<Elektromobilis> GautiVisusElektromobilius();
-        List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAutomobilius();
+        Task<List<Elektromobilis>> GautiVisusElektromobilius();
+        Task<List<NaftosKuroAutomobilis>> GautiVisusNaftosKuroAutomobilius();
         void AtnaujintiElektromobili(Elektromobilis elektromobilis);
     }
 }

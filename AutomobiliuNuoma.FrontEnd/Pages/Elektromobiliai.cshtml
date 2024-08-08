@@ -32,3 +32,65 @@
 </table>
 
 
+
+
+<form id="elektromobilisForm">
+    <label for="id">ID:</label><br>
+    <input type="number" id="id" name="id"><br><br>
+
+    <label for="marke">Markė:</label><br>
+    <input type="text" id="marke" name="marke" required><br><br>
+
+    <label for="modelis">Modelis:</label><br>
+    <input type="text" id="modelis" name="modelis" required><br><br>
+
+    <label for="nuomosKaina">Nuomos Kaina:</label><br>
+    <input type="number" id="nuomosKaina" name="nuomosKaina" step="0.01" required><br><br>
+
+    <label for="baterijosTalpa">Baterijos Talpa:</label><br>
+    <input type="number" id="baterijosTalpa" name="baterijosTalpa" required><br><br>
+
+    <label for="ikrovimoLaikas">Įkrovimo Laikas:</label><br>
+    <input type="number" id="ikrovimoLaikas" name="ikrovimoLaikas" required><br><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+
+<script>
+    function sendFormData(endpoint, formData) {
+        const plainFormData = Object.fromEntries(formData.entries());
+        const jsonString = JSON.stringify(plainFormData);
+
+        fetch(endpoint, {
+            method: 'POST',
+            body: jsonString,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            mode: 'no-cors' 
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+
+    document.getElementById('elektromobilisForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const endpoint = 'https://localhost:7163/Automobiliai/PridetiElektromobili';
+        const formData = new FormData(this); 
+        sendFormData(endpoint, formData);
+    });
+</script>
+
+

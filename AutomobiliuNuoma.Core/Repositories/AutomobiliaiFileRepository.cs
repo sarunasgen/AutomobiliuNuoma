@@ -77,5 +77,15 @@ namespace AutomobiliuNuoma.Core.Repositories
             }
             return visiAuto;
         }
+
+        Task<List<Elektromobilis>> IAutomobiliaiRepository.GautiVisusElektromobilius()
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<List<NaftosKuroAutomobilis>> IAutomobiliaiRepository.GautiVisusNaftosKuroAutomobilius()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

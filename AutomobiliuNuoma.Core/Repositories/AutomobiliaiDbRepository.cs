@@ -27,23 +27,23 @@ namespace AutomobiliuNuoma.Core.Repositories
         {
             throw new NotImplementedException();
         }
-        public List<Elektromobilis> GautiVisusElektromobilius()
+        public async Task<List<Elektromobilis>> GautiVisusElektromobilius()
         {
             using IDbConnection dbConnection = new SqlConnection(_dbConnectionString);
             dbConnection.Open();
-            List<Elektromobilis> result = dbConnection.
-                Query<Elektromobilis>(@"SELECT * FROM [dbo].[Elektromobiliai]").ToList();
+            var result = await dbConnection.
+                QueryAsync<Elektromobilis>(@"SELECT * FROM [dbo].[Elektromobiliai]");
             dbConnection.Close();
-            return result;
+            return result.ToList();
         }
-        public List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAutomobilius()
+        public async Task<List<NaftosKuroAutomobilis>> GautiVisusNaftosKuroAutomobilius()
         {
             using IDbConnection dbConnection = new SqlConnection(_dbConnectionString);
             dbConnection.Open();
-            var result = dbConnection.
-                Query<NaftosKuroAutomobilis>(@"SELECT *, Sanaudos AS DegaluSanaudos FROM NaftosKuroAuto").ToList();
+            var result = await dbConnection.
+                QueryAsync<NaftosKuroAutomobilis>(@"SELECT *, Sanaudos AS DegaluSanaudos FROM NaftosKuroAuto");
             dbConnection.Close();
-            return result;
+            return result.ToList();
         }
 
         public void IrasytiElektromobili(Elektromobilis elektromobilis)

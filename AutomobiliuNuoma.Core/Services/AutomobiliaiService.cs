@@ -22,17 +22,24 @@ namespace AutomobiliuNuoma.Core.Services
             _automobiliaiRepository.AtnaujintiElektromobili(elektromobilis);
         }
 
-        public List<Automobilis> GautiVisusAutomobilius()
+        public async Task<List<Automobilis>> GautiVisusAutomobilius()
         {
-            return _automobiliaiRepository.NuskaitytiAutomobilius();
+            List<Automobilis> visiAutomobiliai = new List<Automobilis>();
+            var elektriniai = _automobiliaiRepository.GautiVisusElektromobilius();
+            var naftoskuro = _automobiliaiRepository.GautiVisusNaftosKuroAutomobilius();
+            await Task.WhenAll(elektriniai, naftoskuro);
+            ///
+            
+            return null;
+            //..
         }
         public List<Elektromobilis> GautiVisusElektromobilius()
         {
-            return _automobiliaiRepository.GautiVisusElektromobilius();
+            return _automobiliaiRepository.GautiVisusElektromobilius().Result;
         }
         public List<NaftosKuroAutomobilis> GautiVisusNaftosKuroAuto()
         {
-            return _automobiliaiRepository.GautiVisusNaftosKuroAutomobilius();
+            return _automobiliaiRepository.GautiVisusNaftosKuroAutomobilius().Result;
         }
 
         public void IrasytiIFaila()
