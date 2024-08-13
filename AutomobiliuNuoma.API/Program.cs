@@ -25,8 +25,20 @@ builder.Services.AddTransient<IDarbuotojaiService, DarbuotojaiService>();
 builder.Services.AddTransient<IAutonuomaService, AutonuomosService>();
 builder.Services.AddSingleton<ICacheService, CacheService>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        policy =>
+        {
+            policy.WithOrigins("https://localhost:7052")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
+
+app.UseCors("AllowSpecificOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

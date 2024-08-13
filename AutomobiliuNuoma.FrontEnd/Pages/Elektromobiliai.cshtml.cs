@@ -17,7 +17,7 @@ namespace AutomobiliuNuoma.FrontEnd.Pages
 
         public void OnGet()
         {
-            Elektromobiliai = _autonuomaService.GautiVisusElektromobilius();
+            Elektromobiliai = _autonuomaService.GautiVisusElektromobilius().Result;
         }
     }
 }

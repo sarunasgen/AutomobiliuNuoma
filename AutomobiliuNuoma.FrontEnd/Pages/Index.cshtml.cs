@@ -19,7 +19,7 @@ namespace AutomobiliuNuoma.FrontEnd.Pages
         {
             Random r = new Random();
             RandomNumber = r.Next(1, 99999);
-            Elektromobiliai = _autonuomaService.GautiVisusElektromobilius();
+            Elektromobiliai = _autonuomaService.GautiVisusElektromobilius().Result;
         }
     }
 }

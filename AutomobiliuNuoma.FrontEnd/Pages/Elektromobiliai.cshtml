@@ -35,8 +35,6 @@
 
 
 <form id="elektromobilisForm">
-    <label for="id">ID:</label><br>
-    <input type="number" id="id" name="id"><br><br>
 
     <label for="marke">Markė:</label><br>
     <input type="text" id="marke" name="marke" required><br><br>
@@ -53,7 +51,7 @@
     <label for="ikrovimoLaikas">Įkrovimo Laikas:</label><br>
     <input type="number" id="ikrovimoLaikas" name="ikrovimoLaikas" required><br><br>
 
-    <button type="submit">Submit</button>
+    <button type="submit" id="submit-button">Submit</button>
 </form>
 
 
@@ -61,7 +59,9 @@
     function sendFormData(endpoint, formData) {
         const plainFormData = Object.fromEntries(formData.entries());
         const jsonString = JSON.stringify(plainFormData);
-
+        var submitButton = document.getElementById('submit-button');
+        submitButton.innerText = 'Automobililis pridedamas, palaukite';
+        submitButton.style.background = '#12ff00';
         fetch(endpoint, {
             method: 'POST',
             body: jsonString,
@@ -69,13 +69,13 @@
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            mode: 'no-cors' 
         })
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok ' + response.statusText);
                 }
-                return response.json();
+                alert('Automobilis sekmingai pridetas');
+                window.location.href = '/Elektromobiliai'
             })
             .then(data => {
                 console.log('Success:', data);

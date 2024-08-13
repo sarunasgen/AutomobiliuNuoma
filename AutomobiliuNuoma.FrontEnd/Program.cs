@@ -1,12 +1,15 @@
 using AutomobiliuNuoma.Core.Contracts;
 using AutomobiliuNuoma.Core.Repositories;
 using AutomobiliuNuoma.Core.Services;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+builder.Services.AddSingleton<IMongoClient, MongoClient>(_ => new MongoClient("mongodb+srv://testuser3:123!asd56@cluster0.kcffo36.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"));
+builder.Services.AddTransient<IMongoDbCacheRepository, MongoDbCacheRepository>();
 builder.Services.AddTransient<IKlientaiRepository, KlientaiFileRepository>(_ => new KlientaiFileRepository("Klientai.csv"));
 builder.Services.AddTransient<IAutomobiliaiRepository, AutomobiliaiDbRepository>(_ => new AutomobiliaiDbRepository("Server=localhost\\MSSQLSERVER01;Database=autonuoma;Trusted_Connection=True;"));
 builder.Services.AddTransient<IKlientaiService, KlientaiService>();
